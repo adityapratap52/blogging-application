@@ -4,12 +4,13 @@ import lombok.*;
 
 import javax.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name="users")
 @Getter
 @Setter
 @NoArgsConstructor
-@ToString
 public class User {
 
     @Id
@@ -19,4 +20,7 @@ public class User {
     private String email;
     private String password;
     private String about;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Post> posts;
 }
