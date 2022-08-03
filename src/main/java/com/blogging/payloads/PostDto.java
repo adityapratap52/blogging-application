@@ -1,6 +1,7 @@
 package com.blogging.payloads;
 
 import com.blogging.entities.Category;
+import com.blogging.entities.Comment;
 import com.blogging.entities.User;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,6 +10,7 @@ import lombok.Setter;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.Date;
+import java.util.Set;
 
 @NoArgsConstructor
 @Getter
@@ -33,5 +35,7 @@ public class PostDto {
     private CategoryDto category;
 
     private UserDto user;
+
+    private Set<CommentDto> comments;
 
 }
