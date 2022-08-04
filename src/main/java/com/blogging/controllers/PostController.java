@@ -1,6 +1,6 @@
 package com.blogging.controllers;
 
-import com.blogging.config.AppConstants;
+import com.blogging.utils.AppConstants;
 import com.blogging.payloads.ApiResponse;
 import com.blogging.payloads.PostDto;
 import com.blogging.payloads.PostResponse;
@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
