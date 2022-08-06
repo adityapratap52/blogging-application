@@ -58,16 +58,16 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public PostDto updatePost(PostDto postDto, Integer postId) {
+    public PostDto updatePost(PostDto postDto) {
 
-        Post post = this.postRepo.findById(postId).orElseThrow(() -> new ResourceNotFoundException("Post", "PostId", postId));
+        Post post = this.postRepo.findById(postDto.getPostId()).orElseThrow(() -> new ResourceNotFoundException("Post", "PostId", postDto.getPostId()));
 
         post.setTitle(postDto.getTitle());
         post.setContent(postDto.getContent());
         if (postDto.getImageName() != null && !Objects.equals(postDto.getImageName(), "")) {
             post.setImageName(postDto.getImageName());
         }
-        post.setUpdatedDate(new Date());
+        postDto.setUpdatedDate(new Date());
 
         Post updatedPost = this.postRepo.save(post);
         return this.modelMapper.map(updatedPost, PostDto.class);
@@ -93,14 +93,8 @@ public class PostServiceImpl implements PostService {
 
         List<PostDto> postDtos = posts.stream().map((post) -> this.modelMapper.map(post, PostDto.class)).collect(Collectors.toList());
 
-        PostResponse postResponse = new PostResponse();
-        postResponse.setContent(postDtos);
-        postResponse.setPageNumber(pagePost.getNumber());
-        postResponse.setPageSize(pagePost.getSize());
-        postResponse.setTotalElements(pagePost.getTotalElements());
-        postResponse.setTotalPages(pagePost.getTotalPages());
-        postResponse.setLastPage(pagePost.isLast());
-
+        // Set the pagination
+        PostResponse postResponse = this.returnResponse(postDtos, pagePost);
 
         return postResponse;
     }
@@ -127,13 +121,8 @@ public class PostServiceImpl implements PostService {
 
         List<PostDto> postDtos = posts.stream().map((post) -> this.modelMapper.map(post, PostDto.class)).collect(Collectors.toList());
 
-        PostResponse postResponse = new PostResponse();
-        postResponse.setContent(postDtos);
-        postResponse.setPageNumber(pagePost.getNumber());
-        postResponse.setPageSize(pagePost.getSize());
-        postResponse.setTotalElements(pagePost.getTotalElements());
-        postResponse.setTotalPages(pagePost.getTotalPages());
-        postResponse.setLastPage(pagePost.isLast());
+        // Set the pagination
+        PostResponse postResponse = this.returnResponse(postDtos, pagePost);
 
         return postResponse;
     }
@@ -152,13 +141,8 @@ public class PostServiceImpl implements PostService {
 
         List<PostDto> postDtos = posts.stream().map((post) -> this.modelMapper.map(post, PostDto.class)).collect(Collectors.toList());
 
-        PostResponse postResponse = new PostResponse();
-        postResponse.setContent(postDtos);
-        postResponse.setPageNumber(pagePost.getNumber());
-        postResponse.setPageSize(pagePost.getSize());
-        postResponse.setTotalElements(pagePost.getTotalElements());
-        postResponse.setTotalPages(pagePost.getTotalPages());
-        postResponse.setLastPage(pagePost.isLast());
+        // Set the pagination
+        PostResponse postResponse = this.returnResponse(postDtos, pagePost);
 
         return postResponse;
     }
@@ -172,5 +156,17 @@ public class PostServiceImpl implements PostService {
         List<PostDto> postDtos = posts.stream().map((post) -> this.modelMapper.map(post, PostDto.class)).collect(Collectors.toList());
 
         return postDtos;
+    }
+
+    public PostResponse returnResponse(List<PostDto> postDtos, Page<Post> pagePost) {
+        PostResponse postResponse = new PostResponse();
+        postResponse.setContent(postDtos);
+        postResponse.setPageNumber(pagePost.getNumber());
+        postResponse.setPageSize(pagePost.getSize());
+        postResponse.setTotalElements(pagePost.getTotalElements());
+        postResponse.setTotalPages(pagePost.getTotalPages());
+        postResponse.setLastPage(pagePost.isLast());
+
+        return postResponse;
     }
 }

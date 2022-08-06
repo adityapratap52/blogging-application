@@ -43,11 +43,10 @@ public class PostController {
         return new ResponseEntity<>(createdPost, HttpStatus.CREATED);
     }
 
-    @PutMapping("/updatePost/{postId}")
-    public ResponseEntity<PostDto> updatedPost(@RequestBody PostDto postDto,
-                                               @PathVariable Integer postId) {
+    @PutMapping("/updatePost")
+    public ResponseEntity<PostDto> updatedPost(@RequestBody PostDto postDto) {
 
-        PostDto updatedPost = this.postService.updatePost(postDto, postId);
+        PostDto updatedPost = this.postService.updatePost(postDto);
 
         return new ResponseEntity<>(updatedPost, HttpStatus.OK);
     }
@@ -115,7 +114,7 @@ public class PostController {
         PostDto postDto = this.postService.getPostById(postId);
         String fileName = this.fileService.uploadImage(path, image);
         postDto.setImageName(fileName);
-        PostDto updatePost = this.postService.updatePost(postDto, postId);
+        PostDto updatePost = this.postService.updatePost(postDto);
 
         return new ResponseEntity<>(updatePost, HttpStatus.OK);
     }

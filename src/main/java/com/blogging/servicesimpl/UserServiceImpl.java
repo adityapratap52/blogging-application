@@ -31,16 +31,16 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDto updateUser(UserDto userDto, Integer userId) {
+    public UserDto updateUser(UserDto userDto) {
 
-        User user = dtoToUser(getUserById(userId));
+//        User user = dtoToUser(getUserById(userId));
+//
+//        user.setName(userDto.getName());
+//        user.setEmail(userDto.getEmail());
+//        user.setPassword(userDto.getPassword());
+//        user.setAbout(userDto.getAbout());
 
-        user.setName(userDto.getName());
-        user.setEmail(userDto.getEmail());
-        user.setPassword(userDto.getPassword());
-        user.setAbout(userDto.getAbout());
-
-        User updatedUser = this.userRepo.save(user);
+        User updatedUser = this.userRepo.save(this.dtoToUser(userDto));
 
         return this.userToDto(updatedUser);
     }

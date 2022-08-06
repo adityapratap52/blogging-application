@@ -30,11 +30,10 @@ public class UserController {
 
 
     // update user in database
-    @PutMapping("/updateUser/{userId}")
-    public ResponseEntity<UserDto> updateUser(@Valid @RequestBody UserDto userDto,
-                                              @PathVariable Integer userId) {
+    @PutMapping("/updateUser")
+    public ResponseEntity<UserDto> updateUser(@Valid @RequestBody UserDto userDto) {
 
-        UserDto updatedUser = this.userService.updateUser(userDto, userId);
+        UserDto updatedUser = this.userService.updateUser(userDto);
 
         return ResponseEntity.ok(updatedUser);
     }

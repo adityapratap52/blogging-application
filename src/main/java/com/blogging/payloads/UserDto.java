@@ -32,5 +32,5 @@ public class UserDto {
     @NotNull
     private String about;
 
-    private Set<CommentDto> comments;
+//    private Set<CommentDto> comments;
 }
