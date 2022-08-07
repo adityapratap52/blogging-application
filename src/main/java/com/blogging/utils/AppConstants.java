@@ -8,4 +8,7 @@ public class AppConstants {
     public static final String SORT_DIR = "asc";
     public static final long JWT_TOKEN_VALIDITY = 5 * 60 * 60L;
     public static final long SERIAL_VERSION_UID = -2550185165626007488L;
+    public static final Integer ROLE_ADMIN = 501;
+    public static final Integer ROLE_NORMAL = 502;
+
 }

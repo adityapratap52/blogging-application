@@ -1,5 +1,6 @@
 package com.blogging.payloads;
 
+import com.blogging.entities.Role;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -8,6 +9,7 @@ import lombok.ToString;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import java.util.HashSet;
 import java.util.Set;
 
 @NoArgsConstructor
@@ -31,6 +33,8 @@ public class UserDto {
 
     @NotNull
     private String about;
+
+    private Set<RoleDto> roles = new HashSet<>();
 
 //    private Set<CommentDto> comments;
 }

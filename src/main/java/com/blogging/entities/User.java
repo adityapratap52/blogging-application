@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -33,4 +34,15 @@ public class User{
     joinColumns = @JoinColumn(name = "user", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "role", referencedColumnName = "id"))
     private Set<Role> roles;
+
+    /*
+    public void addRoles(Role role) {
+
+        if (roles == null) {
+            roles = new HashSet<>();
+        }
+
+        roles.add(role);
+    }
+     */
 }

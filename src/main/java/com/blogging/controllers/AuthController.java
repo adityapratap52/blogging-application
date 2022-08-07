@@ -3,6 +3,8 @@ package com.blogging.controllers;
 import com.blogging.jwtsecurity.JwtAuthRequest;
 import com.blogging.jwtsecurity.JwtAuthResponse;
 import com.blogging.jwtsecurity.JwtTokenHelper;
+import com.blogging.payloads.UserDto;
+import com.blogging.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,6 +27,9 @@ public class AuthController {
 
     @Autowired
     private AuthenticationManager authenticationManager;
+
+    @Autowired
+    private UserService userService;
 
     @PostMapping("/login")
     public ResponseEntity<JwtAuthResponse> createToken(@RequestBody JwtAuthRequest request) throws Exception {
@@ -50,5 +55,14 @@ public class AuthController {
             e.printStackTrace();
             throw new Exception("Invalid username or password");
         }
+    }
+
+    // register new user api
+    @PostMapping("/register")
+    public ResponseEntity<UserDto> regiserUser(@RequestBody UserDto userDto) {
+
+        UserDto registeredUser = this.userService.registerNewUser(userDto);
+
+        return new ResponseEntity<>(registeredUser, HttpStatus.CREATED);
     }
 }

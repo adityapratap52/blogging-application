@@ -8,6 +8,8 @@ import java.util.List;
 
 public interface UserService {
 
+    UserDto registerNewUser(UserDto userDto);
+
     UserDto createUser(UserDto user);
 
     UserDto updateUser(UserDto user);
