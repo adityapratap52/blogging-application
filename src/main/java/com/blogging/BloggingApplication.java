@@ -41,7 +41,7 @@ public class BloggingApplication implements CommandLineRunner {
 			role1.setName("ROLE_ADMIN");
 
 			Role role2 = new Role();
-			role2.setId(AppConstants.ROLE_NORMAL);
+			role2.setId(AppConstants.ROLE_USER);
 			role2.setName("ROLE_USER");
 
 			List<Role> roles = List.of(role1, role2);

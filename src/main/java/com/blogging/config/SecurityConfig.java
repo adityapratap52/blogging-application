@@ -25,6 +25,15 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 //@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig {
 
+    public static final String[] PUBLIC_URLS = {
+        "/api/v1/auth/**",
+        "/v3/api-docs/**",
+        "/v2/api-docs/**",
+        "/swagger-resources/**",
+        "/swagger-ui/**",
+        "/webjars/**"
+    };
+
     @Autowired
     private JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
 
@@ -52,10 +61,9 @@ public class SecurityConfig {
         .disable();
 
         http.authorizeRequests()
-            .antMatchers("/api/v1/auth/**").permitAll()
-            .antMatchers("/v3/api-docs/**").permitAll()
-            .antMatchers(HttpMethod.GET).permitAll()
-            .anyRequest().permitAll()
+            .antMatchers(PUBLIC_URLS).permitAll()
+//            .antMatchers(HttpMethod.GET).permitAll()
+            .anyRequest().authenticated()
             .and()
             .sessionManagement()
             .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
