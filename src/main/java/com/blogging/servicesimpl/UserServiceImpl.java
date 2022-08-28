@@ -47,24 +47,17 @@ public class UserServiceImpl implements UserService {
         return this.modelMapper.map(registeredUser, UserDto.class);
     }
 
-    @Override
-    public UserDto createUser(UserDto userDto) {
-
-        User user = this.dtoToUser(userDto);
-        User savedUser = this.userRepo.save(user);
-
-        return this.userToDto(savedUser);
-    }
+//    @Override
+//    public UserDto createUser(UserDto userDto) {
+//
+//        User user = this.dtoToUser(userDto);
+//        User savedUser = this.userRepo.save(user);
+//
+//        return this.userToDto(savedUser);
+//    }
 
     @Override
     public UserDto updateUser(UserDto userDto) {
-
-//        User user = dtoToUser(getUserById(userId));
-//
-//        user.setName(userDto.getName());
-//        user.setEmail(userDto.getEmail());
-//        user.setPassword(userDto.getPassword());
-//        user.setAbout(userDto.getAbout());
 
         User updatedUser = this.userRepo.save(this.dtoToUser(userDto));
 

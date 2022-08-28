@@ -5,7 +5,6 @@ import com.blogging.jwtsecurity.JwtAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -63,7 +62,7 @@ public class SecurityConfig {
         http.authorizeRequests()
             .antMatchers(PUBLIC_URLS).permitAll()
 //            .antMatchers(HttpMethod.GET).permitAll()
-            .anyRequest().authenticated()
+            .anyRequest().hasAnyRole("ADMIN","USER")
             .and()
             .sessionManagement()
             .sessionCreationPolicy(SessionCreationPolicy.STATELESS);

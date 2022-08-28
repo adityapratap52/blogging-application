@@ -18,23 +18,15 @@ public class CategoryController {
     @Autowired
     private CategoryService categoryService;
 
-    @PostMapping("/addCategory")
-    public ResponseEntity<CategoryDto> createCategory(@Valid @RequestBody CategoryDto categoryDto) {
+    @RequestMapping(value = "/saveOrUpdateCategory", method = {RequestMethod.POST, RequestMethod.PUT})
+    public ResponseEntity<String> saveOrUpdateCategory(@Valid @RequestBody CategoryDto categoryDto) {
 
-        CategoryDto createCat = this.categoryService.createCategory(categoryDto);
+        String createCat = this.categoryService.saveOrUpdateCategory(categoryDto);
 
         return new ResponseEntity<>(createCat, HttpStatus.CREATED);
     }
 
-    @PutMapping("/updateCategory")
-    public ResponseEntity<CategoryDto> updateCategory(@Valid @RequestBody CategoryDto categoryDto) {
-
-        CategoryDto updateCat = this.categoryService.updateCategory(categoryDto);
-
-        return new ResponseEntity<>(updateCat, HttpStatus.OK);
-    }
-
-    @DeleteMapping("/deleteCategory/{catId}")
+    @GetMapping("/deleteCategory/{catId}")
     public ResponseEntity<ApiResponse> deleteCategory(@PathVariable Integer catId) {
 
         this.categoryService.deleteCategory(catId);

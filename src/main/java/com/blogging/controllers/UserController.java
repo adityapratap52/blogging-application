@@ -6,8 +6,6 @@ import com.blogging.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -21,13 +19,13 @@ public class UserController {
     private UserService userService;
 
     // add user in database
-    @PostMapping("/addUser")
-    public ResponseEntity<UserDto> createUser(@Valid @RequestBody UserDto userDto) {
-
-        UserDto createUserDto = this.userService.createUser(userDto);
-
-        return new ResponseEntity<>(createUserDto, HttpStatus.CREATED);
-    }
+//    @PostMapping("/addUser")
+//    public ResponseEntity<UserDto> createUser(@Valid @RequestBody UserDto userDto) {
+//
+//        UserDto createUserDto = this.userService.createUser(userDto);
+//
+//        return new ResponseEntity<>(createUserDto, HttpStatus.CREATED);
+//    }
 
 
     // update user in database

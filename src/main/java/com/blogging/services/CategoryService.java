@@ -6,9 +6,8 @@ import java.util.List;
 
 public interface CategoryService {
 
-    CategoryDto createCategory(CategoryDto categoryDto);
+    String saveOrUpdateCategory(CategoryDto categoryDto);
 
-    CategoryDto updateCategory(CategoryDto categoryDto);
 
     void deleteCategory(Integer categoryId);
 
